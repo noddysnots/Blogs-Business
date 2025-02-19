@@ -1,0 +1,6 @@
+title: Business Bits
+description: Daily business analyses by Sarthak Pant, IIM L
+theme: jekyll-theme-slate
+markdown: kramdown
+plugins:
+  - jekyll-paginate
