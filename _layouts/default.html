@@ -1,22 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} - Business Bits</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        /* Copy the same CSS from index.html here */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .industry-filter {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        #industrySelect {
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px;
+            border: 2px solid var(--secondary);
+            font-size: 1rem;
+            background: white;
+        }
+
+        .post {
+            background: white;
+            border-radius: 10px;
+            margin: 2rem 0;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .post:hover {
+            transform: translateY(-3px);
+        }
+
+        .meta {
+            color: #666;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .industry-tag {
+            background: var(--secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            margin-left: 1rem;
+        }
+
+        .analysis-content {
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+            
+            .post {
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+            
+            #industrySelect {
+                width: 90%;
+                max-width: 300px;
+            }
+        }
     </style>
 </head>
 <body>
     <header class="header">
         <h1>Business Bits by Sarthak Pant, IIM L.</h1>
     </header>
-    
+
     {{ content }}
 
     <script>
-        // Copy the same JavaScript from index.html here
+        function filterPosts() {
+            const selected = document.getElementById('industrySelect').value.toLowerCase();
+            const posts = document.querySelectorAll('.post');
+            
+            posts.forEach(post => {
+                const industry = post.dataset.industry;
+                if(selected === 'all' || industry === selected) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        }
     </script>
 </body>
 </html>
